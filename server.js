@@ -29,6 +29,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 const db = require("./app/models");
+const { ConnectionAcquireTimeoutError } = require("sequelize");
 
 db.sequelize.sync()
   .then(() => {
