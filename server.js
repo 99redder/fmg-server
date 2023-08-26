@@ -30,6 +30,7 @@ app.use(express.urlencoded({ extended: true }));
 
 const db = require("./app/models");
 const { ConnectionAcquireTimeoutError } = require("sequelize");
+const { sequelize } = require("./app/models");
 
 db.sequelize.sync()
   .then(() => {
@@ -49,7 +50,7 @@ app.get("/", (req, res) => {
   res.json({ message: "Welcome to the FMG-Tracker server application." });
 });
 
-// require Sale, Supply, and Advert routes
+// require Sale, Supply, and Advert Routes
 require("./app/routes/sale.routes")(app);
 require("./app/routes/supply.routes")(app);
 require("./app/routes/advert.routes")(app);
