@@ -3,13 +3,14 @@
 ; Title: advert.routes.js
 ; Author: Chris Gorham
 ; Date Created: 05 August 2023
-; Last Updated: 05 August 2023
+; Last Updated: 26 August 2023
 ; Description: This code sets up the Advertising routes
 ; Sources Used:
 ; BezKoder Angular 10 CRUD Application Tutorial: https://www.bezkoder.com/angular-10-node-js-express-mysql/
 ;=====================================
 */
 
+//exports
 module.exports = app => {
     const advertising = require("../controllers/advert.controller.js");
   

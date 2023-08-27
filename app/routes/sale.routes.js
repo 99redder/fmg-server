@@ -3,13 +3,14 @@
 ; Title: sale.routes.js
 ; Author: Chris Gorham
 ; Date Created: 12 July 2023
-; Last Updated: 31 July 2023
+; Last Updated: 26 August 2023
 ; Description: This code sets up the Sale routes
 ; Sources Used:
 ; BezKoder Angular 10 CRUD Application Tutorial: https://www.bezkoder.com/angular-10-node-js-express-mysql/
 ;=====================================
 */
 
+// exports
 module.exports = app => {
     const sales = require("../controllers/sale.controller.js");
   
