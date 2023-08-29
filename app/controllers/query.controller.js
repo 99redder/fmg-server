@@ -30,7 +30,10 @@ exports.getMultipleQueries = async (req, res) => {
       const query6 = "SELECT SUM(amtCharged) AS advertsTotal2023 from adverts where dateCharged between '2023-01-01' and '2023-12-31'";
 
       // All Time Item Stat Queries
+      // Counts all Gohan Hat sales (every size) for all-time
       const query13 = "SELECT COUNT(*) FROM sales as gohanCount where itemDescription LIKE 'Baby Gohan Hat (%'";
+      // Counts all Gohan Hat Pattern sales for all-time
+      const query14 = "SELECT COUNT(*) FROM sales as patternCount where itemDescription LIKE 'Baby Gohan Hat Pattern%'";
 
       // All-Time Queries
       // Query for: total gross sales 
@@ -46,7 +49,7 @@ exports.getMultipleQueries = async (req, res) => {
       // Query for adding all of the Advertising costs
       const query12 = "SELECT SUM(amtCharged) AS advertsTotal from adverts";
   
-      const [result1, result2, result3, result4, result5, result6, result7, result8, result9, result10, result11, result12, result13] = await Promise.all([
+      const [result1, result2, result3, result4, result5, result6, result7, result8, result9, result10, result11, result12, result13, result14] = await Promise.all([
         sequelize.query(query1, {
           type: sequelize.QueryTypes.SELECT,
         }),
@@ -85,6 +88,9 @@ exports.getMultipleQueries = async (req, res) => {
         }),
         sequelize.query(query13, {
           type: sequelize.QueryTypes.SELECT,
+        }),
+        sequelize.query(query14, {
+          type: sequelize.QueryTypes.SELECT,
         })
       ]);
   
@@ -104,7 +110,9 @@ exports.getMultipleQueries = async (req, res) => {
         // counts
         gohanCount: result13[0],
         totalSalesCount: result10[0],
+        patternCount: result14[0],
         totalSalesCount2023: result4[0]});
+
     } catch (error) {
       console.error(error);
       res.status(500).json({ error: 'An error occurred' });
