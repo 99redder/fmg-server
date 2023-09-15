@@ -3,7 +3,7 @@
 ; Title: transaction.controller.js
 ; Author: Chris Gorham
 ; Date Created: 26 August 2023
-; Last Updated: 08 September 2023
+; Last Updated: 14 September 2023
 ; Description: This code sets up the Query controller
 ; Sources Used: N/A
 ;=====================================
@@ -76,8 +76,31 @@ exports.getMultipleQueries = async (req, res) => {
       // Counts all Majin Buu Diaper Sets (6-9 months) for all-time
       const query16c = "SELECT COUNT(*) FROM sales as majin69Count where itemDescription LIKE 'Majin Buu Diaper Set (6-9 months)%'";
 
-      // Goku Baby Hat
-      const query17 = "SELECT COUNT(*) FROM sales as majinCount where itemDescription LIKE 'Goku Baby Hat (%'";
+      // Goku Baby Hats
+      // Counts all Baby Goku Hat (every size) for all-time
+      const query17 = "SELECT COUNT(*) FROM sales as gokuHatCount where itemDescription LIKE 'Goku Baby Hat (%'";
+      // Counts all Baby Goku Hat (0-3 months) for all-time
+      const query17a = "SELECT COUNT(*) FROM sales as gokuHat03Count where itemDescription LIKE 'Goku Baby Hat (0-3 months)%'";
+      // Counts all Baby Goku Hat (3-6 months) for all-time
+      const query17b = "SELECT COUNT(*) FROM sales as gokuHat36Count where itemDescription LIKE 'Goku Baby Hat (3-6 months)%'";
+      // Counts all Baby Goku Hat (6-9 months) for all-time
+      const query17c = "SELECT COUNT(*) FROM sales as gokuHat69Count where itemDescription LIKE 'Goku Baby Hat (6-9 months)%'";
+
+      // Luffy Hats
+      // Counts all Luffy Hat sales (every size) for all-time
+      const query18 = "SELECT COUNT(*) FROM sales as luffyCount where itemDescription LIKE 'Luffy Baby Straw Hat (%'";
+      // Counts all Luffy Hat (0-3 months) sales for all-time
+      const query18a = "SELECT COUNT(*) FROM sales as luffy03Count where itemDescription LIKE 'Luffy Baby Straw Hat (0-3 months)%'";
+      // Counts all Luffy Hat (3-6 months) sales for all-time
+      const query18b = "SELECT COUNT(*) FROM sales as luffy36Count where itemDescription LIKE 'Luffy Baby Straw Hat (3-6 months)%'";
+      // Counts all Luffy Hat (6-9 months) sales for all-time
+      const query18c = "SELECT COUNT(*) FROM sales as luffy69Count where itemDescription LIKE 'Luffy Baby Straw Hat (6-9 months)%'";
+      // Counts all Luffy Hat (9-12 months) sales for all-time
+      const query18d = "SELECT COUNT(*) FROM sales as luffy912Count where itemDescription LIKE 'Luffy Baby Straw Hat (9-12 months)%'";
+      // Counts all Luffy Hat (12-18 months) sales for all-time
+      const query18e = "SELECT COUNT(*) FROM sales as luffy1218Count where itemDescription LIKE 'Luffy Baby Straw Hat (12-18 months)%'";
+      // Counts all Luffy Hat (18-24 months) sales for all-time
+      const query18f = "SELECT COUNT(*) FROM sales as luffy1824Count where itemDescription LIKE 'Luffy Baby Straw Hat (18-24 months)%'";
 
       // All-Time Queries
       // Query for: total gross sales 
@@ -93,7 +116,7 @@ exports.getMultipleQueries = async (req, res) => {
       // Query for adding all of the Advertising costs
       const query12 = "SELECT SUM(amtCharged) AS advertsTotal from adverts";
   
-      const [result1, result2, result3, result4, result5, result6, result7, result8, result9, result10, result11, result12, result13, result13a, result13b, result13c, result13d, result13e, result13f, result14, result15, result15a, result15b, result15c, result16, result16a, result16b, result16c, result17] = await Promise.all([
+      const [result1, result2, result3, result4, result5, result6, result7, result8, result9, result10, result11, result12, result13, result13a, result13b, result13c, result13d, result13e, result13f, result14, result15, result15a, result15b, result15c, result16, result16a, result16b, result16c, result17, result17a, result17b, result17c, result18, result18a, result18b, result18c, result18d, result18e, result18f] = await Promise.all([
         sequelize.query(query1, {
           type: sequelize.QueryTypes.SELECT,
         }),
@@ -181,6 +204,36 @@ exports.getMultipleQueries = async (req, res) => {
         sequelize.query(query17, {
           type: sequelize.QueryTypes.SELECT,
         }),
+        sequelize.query(query17a, {
+          type: sequelize.QueryTypes.SELECT,
+        }),
+        sequelize.query(query17b, {
+          type: sequelize.QueryTypes.SELECT,
+        }),
+        sequelize.query(query17c, {
+          type: sequelize.QueryTypes.SELECT,
+        }),
+        sequelize.query(query18, {
+          type: sequelize.QueryTypes.SELECT,
+        }),
+        sequelize.query(query18a, {
+          type: sequelize.QueryTypes.SELECT,
+        }),
+        sequelize.query(query18b, {
+          type: sequelize.QueryTypes.SELECT,
+        }),
+        sequelize.query(query18c, {
+          type: sequelize.QueryTypes.SELECT,
+        }),
+        sequelize.query(query18d, {
+          type: sequelize.QueryTypes.SELECT,
+        }),
+        sequelize.query(query18e, {
+          type: sequelize.QueryTypes.SELECT,
+        }),
+        sequelize.query(query18f, {
+          type: sequelize.QueryTypes.SELECT,
+        }),
       ]);
   
       res.json({ 
@@ -215,6 +268,16 @@ exports.getMultipleQueries = async (req, res) => {
         majin36Count: result16b[0],
         majin69Count: result16c[0],
         gokuHatCount: result17[0],
+        gokuHat03Count: result17a[0],
+        gokuHat36Count: result17b[0],
+        gokuHat69Count: result17c[0],
+        luffyCount: result18[0],
+        luffy03Count: result18a[0],
+        luffy36Count: result18b[0],
+        luffy69Count: result18c[0],
+        luffy912Count: result18d[0],
+        luffy1218Count: result18e[0],
+        luffy1824Count: result18f[0],
         totalSalesCount2023: result4[0]});
 
     } catch (error) {
