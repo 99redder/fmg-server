@@ -1,9 +1,9 @@
 /*
 ======================================
-; Title: transaction.controller.js
+; Title: query.controller.js
 ; Author: Chris Gorham
 ; Date Created: 26 August 2023
-; Last Updated: 14 September 2023
+; Last Updated: 02 December 2023
 ; Description: This code sets up the Query controller
 ; Sources Used: N/A
 ;=====================================
@@ -14,6 +14,21 @@ const { sequelize } = require('../models/index');
 
 exports.getMultipleQueries = async (req, res) => {
     try {
+
+// 2024 Stat Queries
+
+      // Query for: total gross sales for all of 2024
+      const query12024 = "SELECT SUM(salesPrice) AS totalSales2024 from sales where salesDate between '2024-01-01' and '2024-12-31'";
+      // Query for: total shipping costs for all of 2024
+      const query22024 = "SELECT SUM(shippingCost + customBoxCost + oldMaterialOffset) AS totalShipping2024 from sales where salesDate between '2024-01-01' and '2024-12-31'";
+      // Query for adding all of the Etsy Fees for all of 2024
+      const query32024 = "SELECT SUM(etsyTransactionFee + etsyMarketingFee + etsyProcessingFee + etsyListingFee + etsyShippingFee) AS totalEtsyFees2024 from sales where salesDate between '2024-01-01' and '2024-12-31'";
+      // Query for counting the number of sales for all of 2024
+      const query42024 = "SELECT COUNT(*) FROM sales as totalSalesCount2024 where salesDate between '2024-01-01' and '2024-12-31'";
+      // Query for adding all of the Supplies costs for all of 2024
+      const query52024 = "SELECT SUM(itemTotalCost) AS suppliesTotal2024 from supplies where purchaseDate between '2024-01-01' and '2024-12-31'";
+      // Query for adding all of the Advertising costs for all of 2024
+      const query62024 = "SELECT SUM(amtCharged) AS advertsTotal2024 from adverts where dateCharged between '2024-01-01' and '2024-12-31'";
 
 // 2023 Stat Queries
 
@@ -116,7 +131,7 @@ exports.getMultipleQueries = async (req, res) => {
       // Query for adding all of the Advertising costs
       const query12 = "SELECT SUM(amtCharged) AS advertsTotal from adverts";
   
-      const [result1, result2, result3, result4, result5, result6, result7, result8, result9, result10, result11, result12, result13, result13a, result13b, result13c, result13d, result13e, result13f, result14, result15, result15a, result15b, result15c, result16, result16a, result16b, result16c, result17, result17a, result17b, result17c, result18, result18a, result18b, result18c, result18d, result18e, result18f] = await Promise.all([
+      const [result1, result2, result3, result4, result5, result6, result12024, result22024, result32024, result42024, result52024, result62024, result7, result8, result9, result10, result11, result12, result13, result13a, result13b, result13c, result13d, result13e, result13f, result14, result15, result15a, result15b, result15c, result16, result16a, result16b, result16c, result17, result17a, result17b, result17c, result18, result18a, result18b, result18c, result18d, result18e, result18f] = await Promise.all([
         sequelize.query(query1, {
           type: sequelize.QueryTypes.SELECT,
         }),
@@ -133,6 +148,24 @@ exports.getMultipleQueries = async (req, res) => {
           type: sequelize.QueryTypes.SELECT,
         }),
         sequelize.query(query6, {
+          type: sequelize.QueryTypes.SELECT,
+        }),
+        sequelize.query(query12024, {
+          type: sequelize.QueryTypes.SELECT,
+        }),
+        sequelize.query(query22024, {
+          type: sequelize.QueryTypes.SELECT,
+        }),
+        sequelize.query(query32024, {
+          type: sequelize.QueryTypes.SELECT,
+        }),
+        sequelize.query(query42024, {
+          type: sequelize.QueryTypes.SELECT,
+        }),
+        sequelize.query(query52024, {
+          type: sequelize.QueryTypes.SELECT,
+        }),
+        sequelize.query(query62024, {
           type: sequelize.QueryTypes.SELECT,
         }),
         sequelize.query(query7, {
@@ -237,6 +270,12 @@ exports.getMultipleQueries = async (req, res) => {
       ]);
   
       res.json({ 
+        // 2024
+        totalSales2024: result12024[0].totalSales2024, 
+        totalShipping2024: result22024[0].totalShipping2024, 
+        totalEtsyFees2024: result32024[0].totalEtsyFees2024, 
+        suppliesTotal2024: result52024[0].suppliesTotal2024,
+        advertsTotal2024: result62024[0].advertsTotal2024,
         // 2023
         totalSales2023: result1[0].totalSales2023, 
         totalShipping2023: result2[0].totalShipping2023, 
@@ -278,6 +317,7 @@ exports.getMultipleQueries = async (req, res) => {
         luffy912Count: result18d[0],
         luffy1218Count: result18e[0],
         luffy1824Count: result18f[0],
+        totalSalesCount2024: result42024[0],
         totalSalesCount2023: result4[0]});
 
     } catch (error) {
