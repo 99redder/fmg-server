@@ -3,7 +3,7 @@
 ; Title: query.controller.js
 ; Author: Chris Gorham
 ; Date Created: 26 August 2023
-; Last Updated: 02 December 2023
+; Last Updated: 04 June 2024
 ; Description: This code sets up the Query controller
 ; Sources Used: N/A
 ;=====================================
@@ -25,6 +25,30 @@ exports.getMultipleQueries = async (req, res) => {
       const query32024 = "SELECT SUM(etsyTransactionFee + etsyMarketingFee + etsyProcessingFee + etsyListingFee + etsyShippingFee) AS totalEtsyFees2024 from sales where salesDate between '2024-01-01' and '2024-12-31'";
       // Query for counting the number of sales for all of 2024
       const query42024 = "SELECT COUNT(*) FROM sales as totalSalesCount2024 where salesDate between '2024-01-01' and '2024-12-31'";
+      // Query for counting the number of sales for January of 2024
+      const queryjan2024 = "SELECT COUNT(*) FROM sales as totalJanSalesCount2024 where salesDate between '2024-01-01' and '2024-01-31'";
+      // Query for counting the number of sales for February of 2024
+      const queryfeb2024 = "SELECT COUNT(*) FROM sales as totalFebSalesCount2024 where salesDate between '2024-02-01' and '2024-02-29'";
+      // Query for counting the number of sales for March of 2024
+      const querymar2024 = "SELECT COUNT(*) FROM sales as totalMarSalesCount2024 where salesDate between '2024-03-01' and '2024-03-31'";
+      // Query for counting the number of sales for April of 2024
+      const queryapr2024 = "SELECT COUNT(*) FROM sales as totalAprSalesCount2024 where salesDate between '2024-04-01' and '2024-04-30'";
+      // Query for counting the number of sales for May of 2024
+      const querymay2024 = "SELECT COUNT(*) FROM sales as totalMaySalesCount2024 where salesDate between '2024-05-01' and '2024-05-31'";
+      // Query for counting the number of sales for June of 2024
+      const queryjun2024 = "SELECT COUNT(*) FROM sales as totalJunSalesCount2024 where salesDate between '2024-06-01' and '2024-06-30'";
+      // Query for counting the number of sales for July of 2024
+      const queryjul2024 = "SELECT COUNT(*) FROM sales as totalJulSalesCount2024 where salesDate between '2024-07-01' and '2024-07-31'";
+      // Query for counting the number of sales for August of 2024
+      const queryaug2024 = "SELECT COUNT(*) FROM sales as totalAugSalesCount2024 where salesDate between '2024-08-01' and '2024-08-31'";
+      // Query for counting the number of sales for September of 2024
+      const querysep2024 = "SELECT COUNT(*) FROM sales as totalSepSalesCount2024 where salesDate between '2024-09-01' and '2024-09-30'";
+      // Query for counting the number of sales for October of 2024
+      const queryoct2024 = "SELECT COUNT(*) FROM sales as totalOctSalesCount2024 where salesDate between '2024-10-01' and '2024-10-31'";
+      // Query for counting the number of sales for November of 2024
+      const querynov2024 = "SELECT COUNT(*) FROM sales as totalNovSalesCount2024 where salesDate between '2024-11-01' and '2024-11-30'";
+      // Query for counting the number of sales for December of 2024
+      const querydec2024 = "SELECT COUNT(*) FROM sales as totalDecSalesCount2024 where salesDate between '2024-12-01' and '2024-12-31'";
       // Query for adding all of the Supplies costs for all of 2024
       const query52024 = "SELECT SUM(itemTotalCost) AS suppliesTotal2024 from supplies where purchaseDate between '2024-01-01' and '2024-12-31'";
       // Query for adding all of the Advertising costs for all of 2024
@@ -40,6 +64,30 @@ exports.getMultipleQueries = async (req, res) => {
       const query3 = "SELECT SUM(etsyTransactionFee + etsyMarketingFee + etsyProcessingFee + etsyListingFee + etsyShippingFee) AS totalEtsyFees2023 from sales where salesDate between '2023-01-01' and '2023-12-31'";
       // Query for counting the number of sales for all of 2023
       const query4 = "SELECT COUNT(*) FROM sales as totalSalesCount2023 where salesDate between '2023-01-01' and '2023-12-31'";
+      // Query for counting the number of sales for January of 2024
+      const queryjan2023 = "SELECT COUNT(*) FROM sales as totalJanSalesCount2023 where salesDate between '2023-01-01' and '2023-01-31'";
+      // Query for counting the number of sales for February of 2024
+      const queryfeb2023 = "SELECT COUNT(*) FROM sales as totalFebSalesCount2023 where salesDate between '2023-02-01' and '2023-02-28'";
+      // Query for counting the number of sales for March of 2024
+      const querymar2023 = "SELECT COUNT(*) FROM sales as totalMarSalesCount2023 where salesDate between '2023-03-01' and '2023-03-31'";
+      // Query for counting the number of sales for April of 2023
+      const queryapr2023 = "SELECT COUNT(*) FROM sales as totalAprSalesCount2023 where salesDate between '2023-04-01' and '2023-04-30'";
+      // Query for counting the number of sales for May of 2023
+      const querymay2023 = "SELECT COUNT(*) FROM sales as totalMaySalesCount2023 where salesDate between '2023-05-01' and '2023-05-31'";
+      // Query for counting the number of sales for June of 2023
+      const queryjun2023 = "SELECT COUNT(*) FROM sales as totalJunSalesCount2023 where salesDate between '2023-06-01' and '2023-06-30'";
+      // Query for counting the number of sales for July of 2023
+      const queryjul2023 = "SELECT COUNT(*) FROM sales as totalJulSalesCount2023 where salesDate between '2023-07-01' and '2023-07-31'";
+      // Query for counting the number of sales for August of 2023
+      const queryaug2023 = "SELECT COUNT(*) FROM sales as totalAugSalesCount2023 where salesDate between '2023-08-01' and '2023-08-31'";
+      // Query for counting the number of sales for September of 2023
+      const querysep2023 = "SELECT COUNT(*) FROM sales as totalSepSalesCount2023 where salesDate between '2023-09-01' and '2023-09-30'";
+      // Query for counting the number of sales for October of 2023
+      const queryoct2023 = "SELECT COUNT(*) FROM sales as totalOctSalesCount2023 where salesDate between '2023-10-01' and '2023-10-31'";
+      // Query for counting the number of sales for November of 2023
+      const querynov2023 = "SELECT COUNT(*) FROM sales as totalNovSalesCount2023 where salesDate between '2023-11-01' and '2023-11-30'";
+      // Query for counting the number of sales for December of 2023
+      const querydec2023 = "SELECT COUNT(*) FROM sales as totalDecSalesCount2023 where salesDate between '2023-12-01' and '2023-12-31'";
       // Query for adding all of the Supplies costs for all of 2023
       const query5 = "SELECT SUM(itemTotalCost) AS suppliesTotal2023 from supplies where purchaseDate between '2023-01-01' and '2023-12-31'";
       // Query for adding all of the Advertising costs for all of 2023
@@ -131,7 +179,7 @@ exports.getMultipleQueries = async (req, res) => {
       // Query for adding all of the Advertising costs
       const query12 = "SELECT SUM(amtCharged) AS advertsTotal from adverts";
   
-      const [result1, result2, result3, result4, result5, result6, result12024, result22024, result32024, result42024, result52024, result62024, result7, result8, result9, result10, result11, result12, result13, result13a, result13b, result13c, result13d, result13e, result13f, result14, result15, result15a, result15b, result15c, result16, result16a, result16b, result16c, result17, result17a, result17b, result17c, result18, result18a, result18b, result18c, result18d, result18e, result18f] = await Promise.all([
+      const [result1, result2, result3, result4, result5, result6, result12024, result22024, result32024, result42024, result52024, result62024, result7, result8, result9, result10, result11, result12, result13, result13a, result13b, result13c, result13d, result13e, result13f, result14, result15, result15a, result15b, result15c, result16, result16a, result16b, result16c, result17, result17a, result17b, result17c, result18, result18a, result18b, result18c, result18d, result18e, result18f, resultjan2023, resultfeb2023, resultmar2023, resultapr2023, resultmay2023, resultjun2023, resultjul2023, resultaug2023, resultsep2023, resultoct2023, resultnov2023, resultdec2023, resultjan2024, resultfeb2024, resultmar2024, resultapr2024, resultmay2024, resultjun2024, resultjul2024, resultaug2024, resultsep2024, resultoct2024, resultnov2024, resultdec2024] = await Promise.all([
         sequelize.query(query1, {
           type: sequelize.QueryTypes.SELECT,
         }),
@@ -267,6 +315,78 @@ exports.getMultipleQueries = async (req, res) => {
         sequelize.query(query18f, {
           type: sequelize.QueryTypes.SELECT,
         }),
+        sequelize.query(queryjan2023, {
+          type: sequelize.QueryTypes.SELECT,
+        }),
+        sequelize.query(queryfeb2023, {
+          type: sequelize.QueryTypes.SELECT,
+        }),
+        sequelize.query(querymar2023, {
+          type: sequelize.QueryTypes.SELECT,
+        }),
+        sequelize.query(queryapr2023, {
+          type: sequelize.QueryTypes.SELECT,
+        }),
+        sequelize.query(querymay2023, {
+          type: sequelize.QueryTypes.SELECT,
+        }),
+        sequelize.query(queryjun2023, {
+          type: sequelize.QueryTypes.SELECT,
+        }),
+        sequelize.query(queryjul2023, {
+          type: sequelize.QueryTypes.SELECT,
+        }),
+        sequelize.query(queryaug2023, {
+          type: sequelize.QueryTypes.SELECT,
+        }),
+        sequelize.query(querysep2023, {
+          type: sequelize.QueryTypes.SELECT,
+        }),
+        sequelize.query(queryoct2023, {
+          type: sequelize.QueryTypes.SELECT,
+        }),
+        sequelize.query(querynov2023, {
+          type: sequelize.QueryTypes.SELECT,
+        }),
+        sequelize.query(querydec2023, {
+          type: sequelize.QueryTypes.SELECT,
+        }),
+        sequelize.query(queryjan2024, {
+          type: sequelize.QueryTypes.SELECT,
+        }),
+        sequelize.query(queryfeb2024, {
+          type: sequelize.QueryTypes.SELECT,
+        }),
+        sequelize.query(querymar2024, {
+          type: sequelize.QueryTypes.SELECT,
+        }),
+        sequelize.query(queryapr2024, {
+          type: sequelize.QueryTypes.SELECT,
+        }),
+        sequelize.query(querymay2024, {
+          type: sequelize.QueryTypes.SELECT,
+        }),
+        sequelize.query(queryjun2024, {
+          type: sequelize.QueryTypes.SELECT,
+        }),
+        sequelize.query(queryjul2024, {
+          type: sequelize.QueryTypes.SELECT,
+        }),
+        sequelize.query(queryaug2024, {
+          type: sequelize.QueryTypes.SELECT,
+        }),
+        sequelize.query(querysep2024, {
+          type: sequelize.QueryTypes.SELECT,
+        }),
+        sequelize.query(queryoct2024, {
+          type: sequelize.QueryTypes.SELECT,
+        }),
+        sequelize.query(querynov2024, {
+          type: sequelize.QueryTypes.SELECT,
+        }),
+        sequelize.query(querydec2024, {
+          type: sequelize.QueryTypes.SELECT,
+        }),
       ]);
   
       res.json({ 
@@ -318,7 +438,32 @@ exports.getMultipleQueries = async (req, res) => {
         luffy1218Count: result18e[0],
         luffy1824Count: result18f[0],
         totalSalesCount2024: result42024[0],
-        totalSalesCount2023: result4[0]});
+        totalSalesCount2023: result4[0],
+        jan2023: resultjan2023[0],
+        feb2023: resultfeb2023[0],
+        mar2023: resultmar2023[0],
+        apr2023: resultapr2023[0],
+        may2023: resultmay2023[0],
+        jun2023: resultjun2023[0],
+        jul2023: resultjul2023[0],
+        aug2023: resultaug2023[0],
+        sep2023: resultsep2023[0],
+        oct2023: resultoct2023[0],
+        nov2023: resultnov2023[0],
+        dec2023: resultdec2023[0],
+        jan2024: resultjan2024[0],
+        feb2024: resultfeb2024[0],
+        mar2024: resultmar2024[0],
+        apr2024: resultapr2024[0],
+        may2024: resultmay2024[0],
+        jun2024: resultjun2024[0],
+        jul2024: resultjul2024[0],
+        aug2024: resultaug2024[0],
+        sep2024: resultsep2024[0],
+        oct2024: resultoct2024[0],
+        nov2024: resultnov2024[0],
+        dec2024: resultdec2024[0],
+      });
 
     } catch (error) {
       console.error(error);
