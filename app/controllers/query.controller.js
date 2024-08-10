@@ -3,7 +3,7 @@
 ; Title: query.controller.js
 ; Author: Chris Gorham
 ; Date Created: 26 August 2023
-; Last Updated: 15 June 2024
+; Last Updated: 10 August 2024
 ; Description: This code sets up the Query controller
 ; Sources Used: N/A
 ;=====================================
@@ -196,6 +196,12 @@ exports.getMultipleQueries = async (req, res) => {
       const query17b = "SELECT COUNT(*) FROM sales as gokuHat36Count where itemDescription LIKE 'Goku Baby Hat (3-6 months)%'";
       // Counts all Baby Goku Hat (6-9 months) for all-time
       const query17c = "SELECT COUNT(*) FROM sales as gokuHat69Count where itemDescription LIKE 'Goku Baby Hat (6-9 months)%'";
+      // Counts all Baby Goku Hat (9-12 months) for all-time
+      const query17d = "SELECT COUNT(*) FROM sales as gokuHat912Count where itemDescription LIKE 'Goku Baby Hat (9-12 months)%'";
+      // Counts all Baby Goku Hat (12-18 months) for all-time
+      const query17e = "SELECT COUNT(*) FROM sales as gokuHat1218Count where itemDescription LIKE 'Goku Baby Hat (12-18 months)%'";
+      // Counts all Baby Goku Hat (18-24 months) for all-time
+      const query17f = "SELECT COUNT(*) FROM sales as gokuHat1824Count where itemDescription LIKE 'Goku Baby Hat (18-24 months)%'";
 
       // Luffy Hats
       // Counts all Luffy Hat sales (every size) for all-time
@@ -227,7 +233,7 @@ exports.getMultipleQueries = async (req, res) => {
       // Query for adding all of the Advertising costs
       const query12 = "SELECT SUM(amtCharged) AS advertsTotal from adverts";
   
-      const [result1, result2, result3, result4, result5, result6, result12024, result22024, result32024, result42024, result52024, result62024, result7, result8, result9, result10, result11, result12, result13, result13a, result13b, result13c, result13d, result13e, result13f, result14, result15, result15a, result15b, result15c, result16, result16a, result16b, result16c, result17, result17a, result17b, result17c, result18, result18a, result18b, result18c, result18d, result18e, result18f, resultjan2023, resultfeb2023, resultmar2023, resultapr2023, resultmay2023, resultjun2023, resultjul2023, resultaug2023, resultsep2023, resultoct2023, resultnov2023, resultdec2023, resultjan2024, resultfeb2024, resultmar2024, resultapr2024, resultmay2024, resultjun2024, resultjul2024, resultaug2024, resultsep2024, resultoct2024, resultnov2024, resultdec2024, resultjan2023sales, resultfeb2023sales, resultmar2023sales, resultapr2023sales, resultmay2023sales, resultjun2023sales, resultjul2023sales, resultaug2023sales, resultsep2023sales, resultoct2023sales, resultnov2023sales, resultdec2023sales, resultjan2024sales, resultfeb2024sales, resultmar2024sales, resultapr2024sales, resultmay2024sales, resultjun2024sales, resultjul2024sales, resultaug2024sales, resultsep2024sales, resultoct2024sales, resultnov2024sales, resultdec2024sales] = await Promise.all([
+      const [result1, result2, result3, result4, result5, result6, result12024, result22024, result32024, result42024, result52024, result62024, result7, result8, result9, result10, result11, result12, result13, result13a, result13b, result13c, result13d, result13e, result13f, result14, result15, result15a, result15b, result15c, result16, result16a, result16b, result16c, result17, result17a, result17b, result17c, result17d, result17e, result17f, result18, result18a, result18b, result18c, result18d, result18e, result18f, resultjan2023, resultfeb2023, resultmar2023, resultapr2023, resultmay2023, resultjun2023, resultjul2023, resultaug2023, resultsep2023, resultoct2023, resultnov2023, resultdec2023, resultjan2024, resultfeb2024, resultmar2024, resultapr2024, resultmay2024, resultjun2024, resultjul2024, resultaug2024, resultsep2024, resultoct2024, resultnov2024, resultdec2024, resultjan2023sales, resultfeb2023sales, resultmar2023sales, resultapr2023sales, resultmay2023sales, resultjun2023sales, resultjul2023sales, resultaug2023sales, resultsep2023sales, resultoct2023sales, resultnov2023sales, resultdec2023sales, resultjan2024sales, resultfeb2024sales, resultmar2024sales, resultapr2024sales, resultmay2024sales, resultjun2024sales, resultjul2024sales, resultaug2024sales, resultsep2024sales, resultoct2024sales, resultnov2024sales, resultdec2024sales] = await Promise.all([
         sequelize.query(query1, {
           type: sequelize.QueryTypes.SELECT,
         }),
@@ -340,6 +346,15 @@ exports.getMultipleQueries = async (req, res) => {
           type: sequelize.QueryTypes.SELECT,
         }),
         sequelize.query(query17c, {
+          type: sequelize.QueryTypes.SELECT,
+        }),
+        sequelize.query(query17d, {
+          type: sequelize.QueryTypes.SELECT,
+        }),
+        sequelize.query(query17e, {
+          type: sequelize.QueryTypes.SELECT,
+        }),
+        sequelize.query(query17f, {
           type: sequelize.QueryTypes.SELECT,
         }),
         sequelize.query(query18, {
@@ -574,6 +589,9 @@ exports.getMultipleQueries = async (req, res) => {
         gokuHat03Count: result17a[0],
         gokuHat36Count: result17b[0],
         gokuHat69Count: result17c[0],
+        gokuHat912Count: result17d[0],
+        gokuHat1218Count: result17e[0],
+        gokuHat1824Count: result17f[0],
         luffyCount: result18[0],
         luffy03Count: result18a[0],
         luffy36Count: result18b[0],
