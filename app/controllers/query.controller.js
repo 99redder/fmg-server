@@ -3,7 +3,7 @@
 ; Title: query.controller.js
 ; Author: Chris Gorham
 ; Date Created: 26 August 2023
-; Last Updated: 04 November 2024
+; Last Updated: 16 November 2024
 ; Description: This code sets up the Query controller
 ; Sources Used: N/A
 ;=====================================
@@ -14,6 +14,70 @@ const { sequelize } = require('../models/index');
 
 exports.getMultipleQueries = async (req, res) => {
     try {
+// 2025 Stat Queries
+
+      // Query for: total gross sales for all of 2025
+      const query12025 = "SELECT SUM(salesPrice) AS totalSales2025 from sales where salesDate between '2025-01-01' and '2025-12-31'";
+      // Query for: total shipping costs for all of 2025
+      const query22025 = "SELECT SUM(shippingCost + customBoxCost + oldMaterialOffset) AS totalShipping2025 from sales where salesDate between '2025-01-01' and '2025-12-31'";
+      // Query for adding all of the Etsy Fees for all of 2025
+      const query32025 = "SELECT SUM(etsyTransactionFee + etsyMarketingFee + etsyProcessingFee + etsyListingFee + etsyShippingFee) AS totalEtsyFees2025 from sales where salesDate between '2025-01-01' and '2025-12-31'";
+      // Query for counting the number of sales for all of 2025
+      const query42025 = "SELECT COUNT(*) FROM sales as totalSalesCount2025 where salesDate between '2025-01-01' and '2025-12-31'";
+      // Query for counting the number of sales for January of 2025
+      const queryjan2025 = "SELECT COUNT(*) FROM sales as totalJanSalesCount2025 where salesDate between '2025-01-01' and '2025-01-31'";
+      // Query for counting the number of sales for February of 2025
+      const queryfeb2025 = "SELECT COUNT(*) FROM sales as totalFebSalesCount2025 where salesDate between '2025-02-01' and '2025-02-28'";
+      // Query for counting the number of sales for March of 2025
+      const querymar2025 = "SELECT COUNT(*) FROM sales as totalMarSalesCount2025 where salesDate between '2025-03-01' and '2025-03-31'";
+      // Query for counting the number of sales for April of 2025
+      const queryapr2025 = "SELECT COUNT(*) FROM sales as totalAprSalesCount2025 where salesDate between '2025-04-01' and '2025-04-30'";
+      // Query for counting the number of sales for May of 2025
+      const querymay2025 = "SELECT COUNT(*) FROM sales as totalMaySalesCount2025 where salesDate between '2025-05-01' and '2025-05-31'";
+      // Query for counting the number of sales for June of 2025
+      const queryjun2025 = "SELECT COUNT(*) FROM sales as totalJunSalesCount2025 where salesDate between '2025-06-01' and '2025-06-30'";
+      // Query for counting the number of sales for July of 2025
+      const queryjul2025 = "SELECT COUNT(*) FROM sales as totalJulSalesCount2025 where salesDate between '2025-07-01' and '2025-07-31'";
+      // Query for counting the number of sales for August of 2025
+      const queryaug2025 = "SELECT COUNT(*) FROM sales as totalAugSalesCount2025 where salesDate between '2025-08-01' and '2025-08-31'";
+      // Query for counting the number of sales for September of 2025
+      const querysep2025 = "SELECT COUNT(*) FROM sales as totalSepSalesCount2025 where salesDate between '2025-09-01' and '2025-09-30'";
+      // Query for counting the number of sales for October of 2025
+      const queryoct2025 = "SELECT COUNT(*) FROM sales as totalOctSalesCount2025 where salesDate between '2025-10-01' and '2025-10-31'";
+      // Query for counting the number of sales for November of 2025
+      const querynov2025 = "SELECT COUNT(*) FROM sales as totalNovSalesCount2025 where salesDate between '2025-11-01' and '2025-11-30'";
+      // Query for counting the number of sales for December of 2025
+      const querydec2025 = "SELECT COUNT(*) FROM sales as totalDecSalesCount2025 where salesDate between '2025-12-01' and '2025-12-31'";
+      // Query for: total gross sales for all of January 2025
+      const queryjan2025sales = "SELECT SUM(salesPrice) AS jan2025sales from sales where salesDate between '2025-01-01' and '2025-01-31'";
+      // Query for: total gross sales for all of February 2025
+      const queryfeb2025sales = "SELECT SUM(salesPrice) AS feb2025sales from sales where salesDate between '2025-02-01' and '2025-02-28'";
+      // Query for: total gross sales for all of March 2025
+      const querymar2025sales = "SELECT SUM(salesPrice) AS mar2025sales from sales where salesDate between '2025-03-01' and '2025-03-31'";
+      // Query for: total gross sales for all of April 2025
+      const queryapr2025sales = "SELECT SUM(salesPrice) AS apr2025sales from sales where salesDate between '2025-04-01' and '2025-04-30'";
+      // Query for: total gross sales for all of May 2025
+      const querymay2025sales = "SELECT SUM(salesPrice) AS may2025sales from sales where salesDate between '2025-05-01' and '2025-05-31'";
+      // Query for: total gross sales for all of June 2025
+      const queryjun2025sales = "SELECT SUM(salesPrice) AS jun2025sales from sales where salesDate between '2025-06-01' and '2025-06-30'";
+      // Query for: total gross sales for all of July 2025
+      const queryjul2025sales = "SELECT SUM(salesPrice) AS jul2025sales from sales where salesDate between '2025-07-01' and '2025-07-31'";
+      // Query for: total gross sales for all of August 2025
+      const queryaug2025sales = "SELECT SUM(salesPrice) AS aug2025sales from sales where salesDate between '2025-08-01' and '2025-08-31'";
+      // Query for: total gross sales for all of September 2025
+      const querysep2025sales = "SELECT SUM(salesPrice) AS sep2025sales from sales where salesDate between '2025-09-01' and '2025-09-30'";
+      // Query for: total gross sales for all of October 2025
+      const queryoct2025sales = "SELECT SUM(salesPrice) AS oct2025sales from sales where salesDate between '2025-10-01' and '2025-10-31'";
+      // Query for: total gross sales for all of November 2025
+      const querynov2025sales = "SELECT SUM(salesPrice) AS nov2025sales from sales where salesDate between '2025-11-01' and '2025-11-30'";
+      // Query for: total gross sales for all of December 2025
+      const querydec2025sales = "SELECT SUM(salesPrice) AS dec2025sales from sales where salesDate between '2025-12-01' and '2025-12-31'";
+      // Query for adding all of the Supplies costs for all of 2025
+      const query52025 = "SELECT SUM(itemTotalCost) AS suppliesTotal2025 from supplies where purchaseDate between '2025-01-01' and '2025-12-31'";
+      // Query for adding all of the Advertising costs for all of 2025
+      const query62025 = "SELECT SUM(amtCharged) AS advertsTotal2025 from adverts where dateCharged between '2025-01-01' and '2025-12-31'";
+
+
 
 // 2024 Stat Queries
 
@@ -234,7 +298,8 @@ exports.getMultipleQueries = async (req, res) => {
       // Query for adding all of the Advertising costs
       const query12 = "SELECT SUM(amtCharged) AS advertsTotal from adverts";
   
-      const [result1, result2, result3, result4, result5, result6, result12024, result22024, result32024, result42024, result52024, result62024, result7, result8, result9, result10, result11, result12, result13, result13a, result13b, result13c, result13d, result13e, result13f, result14, result15, result15a, result15b, result15c, result16, result16a, result16b, result16c, result17, result17a, result17b, result17c, result17d, result17e, result17f,result17g, result18, result18a, result18b, result18c, result18d, result18e, result18f, resultjan2023, resultfeb2023, resultmar2023, resultapr2023, resultmay2023, resultjun2023, resultjul2023, resultaug2023, resultsep2023, resultoct2023, resultnov2023, resultdec2023, resultjan2024, resultfeb2024, resultmar2024, resultapr2024, resultmay2024, resultjun2024, resultjul2024, resultaug2024, resultsep2024, resultoct2024, resultnov2024, resultdec2024, resultjan2023sales, resultfeb2023sales, resultmar2023sales, resultapr2023sales, resultmay2023sales, resultjun2023sales, resultjul2023sales, resultaug2023sales, resultsep2023sales, resultoct2023sales, resultnov2023sales, resultdec2023sales, resultjan2024sales, resultfeb2024sales, resultmar2024sales, resultapr2024sales, resultmay2024sales, resultjun2024sales, resultjul2024sales, resultaug2024sales, resultsep2024sales, resultoct2024sales, resultnov2024sales, resultdec2024sales] = await Promise.all([
+      const [result1, result2, result3, result4, result5, result6, result12024, result22024, result32024, result42024, result52024, result62024, result12025, result22025, result32025, result42025, result52025, result62025,result7, result8, result9, result10, result11, result12, result13, result13a, result13b, result13c, result13d, result13e, result13f, result14, result15, result15a, result15b, result15c, result16, result16a, result16b, result16c, result17, result17a, result17b, result17c, result17d, result17e, result17f,result17g, result18, result18a, result18b, result18c, result18d, result18e, result18f, resultjan2023, resultfeb2023, resultmar2023, resultapr2023, resultmay2023, resultjun2023, resultjul2023, resultaug2023, resultsep2023, resultoct2023, resultnov2023, resultdec2023, resultjan2024, resultfeb2024, resultmar2024, resultapr2024, resultmay2024, resultjun2024, resultjul2024, resultaug2024, resultsep2024, resultoct2024, resultnov2024, resultdec2024,
+        resultjan2025, resultfeb2025, resultmar2025, resultapr2025, resultmay2025, resultjun2025, resultjul2025, resultaug2025, resultsep2025, resultoct2025, resultnov2025, resultdec2025, resultjan2023sales, resultfeb2023sales, resultmar2023sales, resultapr2023sales, resultmay2023sales, resultjun2023sales, resultjul2023sales, resultaug2023sales, resultsep2023sales, resultoct2023sales, resultnov2023sales, resultdec2023sales, resultjan2024sales, resultfeb2024sales, resultmar2024sales, resultapr2024sales, resultmay2024sales, resultjun2024sales, resultjul2024sales, resultaug2024sales, resultsep2024sales, resultoct2024sales, resultnov2024sales, resultdec2024sales,resultjan2025sales, resultfeb2025sales, resultmar2025sales, resultapr2025sales, resultmay2025sales, resultjun2025sales, resultjul2025sales, resultaug2025sales, resultsep2025sales, resultoct2025sales, resultnov2025sales, resultdec2025sales] = await Promise.all([
         sequelize.query(query1, {
           type: sequelize.QueryTypes.SELECT,
         }),
@@ -269,6 +334,24 @@ exports.getMultipleQueries = async (req, res) => {
           type: sequelize.QueryTypes.SELECT,
         }),
         sequelize.query(query62024, {
+          type: sequelize.QueryTypes.SELECT,
+        }),
+        sequelize.query(query12025, {
+          type: sequelize.QueryTypes.SELECT,
+        }),
+        sequelize.query(query22025, {
+          type: sequelize.QueryTypes.SELECT,
+        }),
+        sequelize.query(query32025, {
+          type: sequelize.QueryTypes.SELECT,
+        }),
+        sequelize.query(query42025, {
+          type: sequelize.QueryTypes.SELECT,
+        }),
+        sequelize.query(query52025, {
+          type: sequelize.QueryTypes.SELECT,
+        }),
+        sequelize.query(query62025, {
           type: sequelize.QueryTypes.SELECT,
         }),
         sequelize.query(query7, {
@@ -454,6 +537,42 @@ exports.getMultipleQueries = async (req, res) => {
         sequelize.query(querydec2024, {
           type: sequelize.QueryTypes.SELECT,
         }),
+        sequelize.query(queryjan2025, {
+          type: sequelize.QueryTypes.SELECT,
+        }),
+        sequelize.query(queryfeb2025, {
+          type: sequelize.QueryTypes.SELECT,
+        }),
+        sequelize.query(querymar2025, {
+          type: sequelize.QueryTypes.SELECT,
+        }),
+        sequelize.query(queryapr2025, {
+          type: sequelize.QueryTypes.SELECT,
+        }),
+        sequelize.query(querymay2025, {
+          type: sequelize.QueryTypes.SELECT,
+        }),
+        sequelize.query(queryjun2025, {
+          type: sequelize.QueryTypes.SELECT,
+        }),
+        sequelize.query(queryjul2025, {
+          type: sequelize.QueryTypes.SELECT,
+        }),
+        sequelize.query(queryaug2025, {
+          type: sequelize.QueryTypes.SELECT,
+        }),
+        sequelize.query(querysep2025, {
+          type: sequelize.QueryTypes.SELECT,
+        }),
+        sequelize.query(queryoct2025, {
+          type: sequelize.QueryTypes.SELECT,
+        }),
+        sequelize.query(querynov2025, {
+          type: sequelize.QueryTypes.SELECT,
+        }),
+        sequelize.query(querydec2025, {
+          type: sequelize.QueryTypes.SELECT,
+        }),
         sequelize.query(queryjan2023sales, {
           type: sequelize.QueryTypes.SELECT,
         }),
@@ -526,9 +645,63 @@ exports.getMultipleQueries = async (req, res) => {
         sequelize.query(querydec2024sales, {
           type: sequelize.QueryTypes.SELECT,
         }),
+        sequelize.query(queryjan2025sales, {
+          type: sequelize.QueryTypes.SELECT,
+        }),
+        sequelize.query(queryfeb2025sales, {
+          type: sequelize.QueryTypes.SELECT,
+        }),
+        sequelize.query(querymar2025sales, {
+          type: sequelize.QueryTypes.SELECT,
+        }),
+        sequelize.query(queryapr2025sales, {
+          type: sequelize.QueryTypes.SELECT,
+        }),
+        sequelize.query(querymay2025sales, {
+          type: sequelize.QueryTypes.SELECT,
+        }),
+        sequelize.query(queryjun2025sales, {
+          type: sequelize.QueryTypes.SELECT,
+        }),
+        sequelize.query(queryjul2025sales, {
+          type: sequelize.QueryTypes.SELECT,
+        }),
+        sequelize.query(queryaug2025sales, {
+          type: sequelize.QueryTypes.SELECT,
+        }),
+        sequelize.query(querysep2025sales, {
+          type: sequelize.QueryTypes.SELECT,
+        }),
+        sequelize.query(queryoct2025sales, {
+          type: sequelize.QueryTypes.SELECT,
+        }),
+        sequelize.query(querynov2025sales, {
+          type: sequelize.QueryTypes.SELECT,
+        }),
+        sequelize.query(querydec2025sales, {
+          type: sequelize.QueryTypes.SELECT,
+        }),
       ]);
   
       res.json({ 
+        // 2025
+        totalSales2025: result12025[0].totalSales2025, 
+        totalShipping2025: result22025[0].totalShipping2025, 
+        totalEtsyFees2025: result32025[0].totalEtsyFees2025, 
+        suppliesTotal2025: result52025[0].suppliesTotal2025,
+        advertsTotal2025: result62025[0].advertsTotal2025,
+        jan2025sales: resultjan2025sales[0].jan2025sales,
+        feb2025sales: resultfeb2025sales[0].feb2025sales,
+        mar2025sales: resultmar2025sales[0].mar2025sales,
+        apr2025sales: resultapr2025sales[0].apr2025sales,
+        may2025sales: resultmay2025sales[0].may2025sales,
+        jun2025sales: resultjun2025sales[0].jun2025sales,
+        jul2025sales: resultjul2025sales[0].jul2025sales,
+        aug2025sales: resultaug2025sales[0].aug2025sales,
+        sep2025sales: resultsep2025sales[0].sep2025sales,
+        oct2025sales: resultoct2025sales[0].oct2025sales,
+        nov2025sales: resultnov2025sales[0].nov2025sales,
+        dec2025sales: resultdec2025sales[0].dec2025sales,
         // 2024
         totalSales2024: result12024[0].totalSales2024, 
         totalShipping2024: result22024[0].totalShipping2024, 
@@ -604,6 +777,7 @@ exports.getMultipleQueries = async (req, res) => {
         luffy912Count: result18d[0],
         luffy1218Count: result18e[0],
         luffy1824Count: result18f[0],
+        totalSalesCount2025: result42025[0],
         totalSalesCount2024: result42024[0],
         totalSalesCount2023: result4[0],
         jan2023: resultjan2023[0],
@@ -630,6 +804,18 @@ exports.getMultipleQueries = async (req, res) => {
         oct2024: resultoct2024[0],
         nov2024: resultnov2024[0],
         dec2024: resultdec2024[0],
+        jan2025: resultjan2025[0],
+        feb2025: resultfeb2025[0],
+        mar2025: resultmar2025[0],
+        apr2025: resultapr2025[0],
+        may2025: resultmay2025[0],
+        jun2025: resultjun2025[0],
+        jul2025: resultjul2025[0],
+        aug2025: resultaug2025[0],
+        sep2025: resultsep2025[0],
+        oct2025: resultoct2025[0],
+        nov2025: resultnov2025[0],
+        dec2025: resultdec2025[0],
       });
 
     } catch (error) {
