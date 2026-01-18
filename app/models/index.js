@@ -3,7 +3,7 @@
 ; Title: index.js
 ; Author: Chris Gorham
 ; Date Created: 12 July 2023
-; Last Updated: 31 July 2023
+; Last Updated: 17 January 2026
 ; Description: This code sets up the db and Sequelize connections
 ; Sources Used:
 ; BezKoder Angular 10 CRUD Application Tutorial: https://www.bezkoder.com/angular-10-node-js-express-mysql/
@@ -15,9 +15,15 @@ const dbConfig = require("../config/db.config.js");
 const Sequelize = require("sequelize");
 const sequelize = new Sequelize(dbConfig.DB, dbConfig.USER, dbConfig.PASSWORD, {
   host: dbConfig.HOST,
+  port: dbConfig.PORT,
   dialect: dbConfig.dialect,
   operatorsAliases: false,
-
+  dialectOptions: process.env.DB_HOST ? {
+    ssl: {
+      minVersion: 'TLSv1.2',
+      rejectUnauthorized: true
+    }
+  } : {},
   pool: {
     max: dbConfig.pool.max,
     min: dbConfig.pool.min,

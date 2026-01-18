@@ -3,7 +3,7 @@
 ; Title: server.js
 ; Author: Chris Gorham
 ; Date Created: 12 July 2023
-; Last Updated: 31 July 2023
+; Last Updated: 17 January 2026
 ; Description: The node init file that sets up the server
 ; Sources Used:
 ; BezKoder Angular 10 CRUD Application Tutorial: https://www.bezkoder.com/angular-10-node-js-express-mysql/
@@ -17,7 +17,7 @@ const app = express();
 
 // sets origin for cors to the local host for the front end (angular) project
 var corsOptions = {
-  origin: "http://localhost:8081"
+  origin: process.env.FRONTEND_URL || "http://localhost:8081"
 };
 
 app.use(cors(corsOptions));
