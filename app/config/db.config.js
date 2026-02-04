@@ -1,7 +1,7 @@
 /*
 ======================================
 ; Title: db.config.js
-; Author: Chris Gorham
+; Author: Red
 ; Date Created: 12 July 2023
 ; Last Updated: 17 January 2026
 ; Description: This code sets up the database login information into variables

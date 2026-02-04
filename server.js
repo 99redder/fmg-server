@@ -1,7 +1,7 @@
 /*
 ======================================
 ; Title: server.js
-; Author: Chris Gorham
+; Author: Red
 ; Date Created: 12 July 2023
 ; Last Updated: 17 January 2026
 ; Description: The node init file that sets up the server

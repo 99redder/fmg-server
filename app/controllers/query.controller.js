@@ -1,7 +1,7 @@
 /*
 ======================================
 ; Title: query.controller.js
-; Author: Chris Gorham
+; Author: Red
 ; Date Created: 26 August 2023
 ; Last Updated: 05 December 2025
 ; Description: This code sets up the Query controller

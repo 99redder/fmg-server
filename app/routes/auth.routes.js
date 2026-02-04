@@ -1,7 +1,7 @@
 /*
 ======================================
 ; Title: auth.routes.js
-; Author: Chris Gorham
+; Author: Red
 ; Date Created: 18 January 2026
 ; Description: Authentication routes for login validation
 ;=====================================

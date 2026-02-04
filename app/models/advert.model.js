@@ -1,7 +1,7 @@
 /*
 ======================================
 ; Title: advert.model.js
-; Author: Chris Gorham
+; Author: Red
 ; Date Created: 05 August 2023
 ; Last Updated: 05 August 2023
 ; Description: This code sets up the Supply model

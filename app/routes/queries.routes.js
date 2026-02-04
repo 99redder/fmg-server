@@ -1,7 +1,7 @@
 /*
 ======================================
 ; Title: queries.routes.js
-; Author: Chris Gorham
+; Author: Red
 ; Date Created: 26 August 2023
 ; Last Updated: 26 August 2023
 ; Description: This code sets up the Queries routes
