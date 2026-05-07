@@ -35,7 +35,14 @@ module.exports = app => {
     router.delete("/:id", supplies.delete);
 
     // Delete all Supplies
-  router.delete("/", supplies.deleteAll);
+  router.delete("/", (req, res, next) => {
+    if (req.query.confirm !== "DELETE_ALL") {
+      return res.status(400).json({
+        message: "Bulk delete requires ?confirm=DELETE_ALL query parameter."
+      });
+    }
+    next();
+  }, supplies.deleteAll);
 
   app.use('/api/supplies', router);
 };

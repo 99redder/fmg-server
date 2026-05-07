@@ -35,7 +35,14 @@ module.exports = app => {
     router.delete("/:id", sales.delete);
 
     // Delete all Sales
-    router.delete("/", sales.deleteAll);
+    router.delete("/", (req, res, next) => {
+      if (req.query.confirm !== "DELETE_ALL") {
+        return res.status(400).json({
+          message: "Bulk delete requires ?confirm=DELETE_ALL query parameter."
+        });
+      }
+      next();
+    }, sales.deleteAll);
 
     // TEST TEST TEST 
     // Retrieve Sales Data (test)
