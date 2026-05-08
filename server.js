@@ -12,7 +12,9 @@
 
 require("dotenv").config();
 
-const requiredEnvVars = ["DB_PASSWORD", "DB_USER", "LOGIN_PASSWORD", "JWT_SECRET"];
+const crypto = require("crypto");
+
+const requiredEnvVars = ["DB_PASSWORD", "DB_USER", "LOGIN_PASSWORD"];
 const missingEnvVars = requiredEnvVars.filter((name) => !process.env[name]);
 
 if (missingEnvVars.length > 0) {
@@ -20,9 +22,17 @@ if (missingEnvVars.length > 0) {
   process.exit(1);
 }
 
-if (process.env.JWT_SECRET.length < 32) {
+if (process.env.JWT_SECRET && process.env.JWT_SECRET.length < 32) {
   console.error("FATAL: JWT_SECRET must be at least 32 characters long.");
   process.exit(1);
+}
+
+if (!process.env.JWT_SECRET) {
+  console.warn("WARNING: JWT_SECRET is not set. Deriving JWT signing secret from LOGIN_PASSWORD. Set JWT_SECRET in production for better secret separation.");
+  process.env.JWT_SECRET = crypto
+    .createHash("sha256")
+    .update(`fmg-server-jwt:${process.env.LOGIN_PASSWORD}`)
+    .digest("hex");
 }
 
 // app imports
