@@ -10,6 +10,21 @@
 ;=====================================
 */
 
+require("dotenv").config();
+
+const requiredEnvVars = ["DB_PASSWORD", "DB_USER", "LOGIN_PASSWORD", "JWT_SECRET"];
+const missingEnvVars = requiredEnvVars.filter((name) => !process.env[name]);
+
+if (missingEnvVars.length > 0) {
+  console.error(`FATAL: Missing required environment variable(s): ${missingEnvVars.join(", ")}.`);
+  process.exit(1);
+}
+
+if (process.env.JWT_SECRET.length < 32) {
+  console.error("FATAL: JWT_SECRET must be at least 32 characters long.");
+  process.exit(1);
+}
+
 // app imports
 const express = require("express");
 const cors = require("cors");

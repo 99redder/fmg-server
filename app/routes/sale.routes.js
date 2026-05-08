@@ -13,11 +13,12 @@
 // exports
 module.exports = app => {
     const sales = require("../controllers/sale.controller.js");
+    const auth = require("../middleware/authMiddleware.js");
   
     var router = require("express").Router();
   
     // Create a new Sale
-    router.post("/", sales.create);
+    router.post("/", auth, sales.create);
   
     // Retrieve all Sales
     router.get("/", sales.findAll);
@@ -29,13 +30,13 @@ module.exports = app => {
     router.get("/:id", sales.findOne);
   
     // Update a Sale with id
-    router.put("/:id", sales.update);
+    router.put("/:id", auth, sales.update);
   
     // Delete a Sale with id
-    router.delete("/:id", sales.delete);
+    router.delete("/:id", auth, sales.delete);
 
     // Delete all Sales
-    router.delete("/", (req, res, next) => {
+    router.delete("/", auth, (req, res, next) => {
       if (req.query.confirm !== "DELETE_ALL") {
         return res.status(400).json({
           message: "Bulk delete requires ?confirm=DELETE_ALL query parameter."

@@ -13,11 +13,12 @@
 //exports
 module.exports = app => {
     const advertising = require("../controllers/advert.controller.js");
+    const auth = require("../middleware/authMiddleware.js");
   
     var router = require("express").Router();
   
     // Create a new Advert
-    router.post("/", advertising.create);
+    router.post("/", auth, advertising.create);
   
     // Retrieve all Adverts
     router.get("/", advertising.findAll);
@@ -29,13 +30,13 @@ module.exports = app => {
     router.get("/:id", advertising.findOne);
   
     // Update an Advert with id
-    router.put("/:id", advertising.update);
+    router.put("/:id", auth, advertising.update);
   
     // Delete an Advert with id
-    router.delete("/:id", advertising.delete);
+    router.delete("/:id", auth, advertising.delete);
 
     // Delete all Adverts
-  router.delete("/", (req, res, next) => {
+  router.delete("/", auth, (req, res, next) => {
     if (req.query.confirm !== "DELETE_ALL") {
       return res.status(400).json({
         message: "Bulk delete requires ?confirm=DELETE_ALL query parameter."

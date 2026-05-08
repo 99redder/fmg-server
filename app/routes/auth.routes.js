@@ -8,6 +8,7 @@
 */
 
 module.exports = app => {
+  const jwt = require("jsonwebtoken");
   const rateLimit = require("express-rate-limit");
   const router = require("express").Router();
 
@@ -21,10 +22,11 @@ module.exports = app => {
 
   router.post('/login', loginLimiter, (req, res) => {
     const { loginCode } = req.body;
-    const validPassword = process.env.LOGIN_PASSWORD || 'localDevPassword';
+    const validPassword = process.env.LOGIN_PASSWORD;
 
     if (loginCode === validPassword) {
-      res.json({ success: true });
+      const token = jwt.sign({ authenticated: true }, process.env.JWT_SECRET, { expiresIn: "8h" });
+      res.json({ success: true, token });
     } else {
       res.status(401).json({ success: false, message: 'Invalid login code' });
     }
