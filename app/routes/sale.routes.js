@@ -37,7 +37,7 @@ module.exports = app => {
 
     // Delete all Sales
     router.delete("/", auth, (req, res, next) => {
-      if (req.body?.confirm !== "DELETE_ALL") {
+      if ((!req.body || req.body.confirm !== "DELETE_ALL")) {
         return res.status(400).json({
           message: "Confirmation required"
         });

@@ -25,7 +25,7 @@ module.exports = app => {
     const { loginCode } = req.body;
     const validPassword = process.env.LOGIN_PASSWORD;
 
-    const a = Buffer.from(loginCode ?? "", "utf8");
+    const a = Buffer.from(loginCode == null ? "" : loginCode, "utf8");
     const b = Buffer.from(validPassword, "utf8");
     const match = a.byteLength === b.byteLength && crypto.timingSafeEqual(a, b);
 

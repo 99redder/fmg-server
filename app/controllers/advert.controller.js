@@ -157,7 +157,7 @@ exports.delete = (req, res) => {
 
 // Delete all Adverts from the database.
 exports.deleteAll = (req, res) => {
-  if (req.body?.confirm !== "DELETE_ALL") {
+  if ((!req.body || req.body.confirm !== "DELETE_ALL")) {
     return res.status(400).send({ message: "Confirmation required" });
   }
 
