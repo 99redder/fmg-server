@@ -37,9 +37,9 @@ module.exports = app => {
 
     // Delete all Supplies
   router.delete("/", auth, (req, res, next) => {
-    if (req.query.confirm !== "DELETE_ALL") {
+    if (req.body?.confirm !== "DELETE_ALL") {
       return res.status(400).json({
-        message: "Bulk delete requires ?confirm=DELETE_ALL query parameter."
+        message: "Confirmation required"
       });
     }
     next();

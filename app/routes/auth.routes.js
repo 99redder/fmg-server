@@ -8,6 +8,7 @@
 */
 
 module.exports = app => {
+  const crypto = require("crypto");
   const jwt = require("jsonwebtoken");
   const rateLimit = require("express-rate-limit");
   const router = require("express").Router();
@@ -24,7 +25,11 @@ module.exports = app => {
     const { loginCode } = req.body;
     const validPassword = process.env.LOGIN_PASSWORD;
 
-    if (loginCode === validPassword) {
+    const a = Buffer.from(loginCode ?? "", "utf8");
+    const b = Buffer.from(validPassword, "utf8");
+    const match = a.byteLength === b.byteLength && crypto.timingSafeEqual(a, b);
+
+    if (match) {
       const token = jwt.sign({ authenticated: true }, process.env.JWT_SECRET, { expiresIn: "8h" });
       res.json({ success: true, token });
     } else {
